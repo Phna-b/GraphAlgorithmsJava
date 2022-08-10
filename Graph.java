@@ -70,8 +70,8 @@ class Graph {
 
   public Graph complement(){
     Graph gC = new Graph(this.countNodes);
-    for(int i = 0; i < countNodes; i++){
-      for(int j = 0; j < countNodes; j++){
+    for(int i = 0; i < adjMatrix.length; i++){
+      for(int j = 0; j < adjMatrix[i].length; j++){
         if(adjMatrix[i][j] == 0 && i != j){
           gC.addEdge(i,j,1);
         }
