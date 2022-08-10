@@ -46,18 +46,44 @@ class Graph {
   }
 
   public int highestDegree() {
-    int cont = 0;
     int hg = 0;
+    
     for (int i = 0; i < this.countNodes; i++) {
-      if (hg < this.degree(i)) {
+      int degreeNodeI = this.degree(i);
+      if (hg < degreeNodeI)
         hg = this.degree(i);
-      }
     }
     return hg;
   }
 
+  public int lowestDegree() {
+    int lw = this.countNodes;
+    
+    for (int i = 0; i < this.countNodes; i++) {
+      int degreeNodeI = this.degree(i);
+      if (lw > degreeNodeI)
+        lw = degreeNodeI;
+    }
+    return lw;  
+    
+  }
+
+  public Graph complement(){
+    Graph gC = new Graph(this.countNodes);
+    for(int i = 0; i < countNodes; i++){
+      for(int j = 0; j < countNodes; j++){
+        if(adjMatrix[i][j] == 0 && i != j){
+          gC.addEdge(i,j,1);
+        }
+      }
+    }
+    return gC;
+  }
+  
+
   public String toString() {
     String str = "";
+    
     for (int i = 0; i < this.adjMatrix.length; i++) {
       for (int j = 0; j < this.adjMatrix[i].length; j++) {
         str += this.adjMatrix[i][j] + "\t";

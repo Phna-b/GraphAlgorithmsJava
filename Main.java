@@ -13,8 +13,7 @@ class Main {
     g1.addEdge(0, 3, 4);
     g1.addEdge(3, 0, 4);
     g1.addEdge(3, 4, 2); // Error.
-    g1.addEdge(3, 3, 4);
-    g1.addEdge(3, 2, 4);
+    g1.addEdge(2, 0, 4);
 
     // Teste Degree
     System.out.println(g1);
@@ -22,9 +21,15 @@ class Main {
     System.out.println(g1.degree(3));
 
     // Teste maior grau
-    System.out.println("\nMaior grau " + g1.highestDegree());
+    System.out.println("\nMaior grau " + 
+    g1.highestDegree());
+    // Teste menor grau
+    System.out.println("\nMenor grau " +     
+    g1.lowestDegree()+ "\n");
     
     System.out.println(g1);
+
+    System.out.println(g1.complement());
 
   }
 }
