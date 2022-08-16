@@ -31,5 +31,9 @@ class Main {
 
     System.out.println(g1.complement());
 
+    //Teste densidade
+    System.out.println(g1);
+    System.out.println(g1.density());
+
   }
 }

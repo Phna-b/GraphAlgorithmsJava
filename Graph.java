@@ -47,7 +47,7 @@ class Graph {
 
   public int highestDegree() {
     int hg = 0;
-    
+
     for (int i = 0; i < this.countNodes; i++) {
       int degreeNodeI = this.degree(i);
       if (hg < degreeNodeI)
@@ -58,32 +58,47 @@ class Graph {
 
   public int lowestDegree() {
     int lw = this.countNodes;
-    
+
     for (int i = 0; i < this.countNodes; i++) {
       int degreeNodeI = this.degree(i);
       if (lw > degreeNodeI)
         lw = degreeNodeI;
     }
-    return lw;  
-    
+    return lw;
+
   }
 
-  public Graph complement(){
+  public Graph complement() {
     Graph gC = new Graph(this.countNodes);
-    for(int i = 0; i < adjMatrix.length; i++){
-      for(int j = 0; j < adjMatrix[i].length; j++){
-        if(adjMatrix[i][j] == 0 && i != j){
-          gC.addEdge(i,j,1);
+    for (int i = 0; i < adjMatrix.length; i++) {
+      for (int j = 0; j < adjMatrix[i].length; j++) {
+        if (adjMatrix[i][j] == 0 && i != j) {
+          gC.addEdge(i, j, 1);
         }
       }
     }
     return gC;
   }
-  
+
+  public float density() {
+    return (float) this.countEdges / (this.countNodes * (this.countNodes - 1));
+  }
+
+  public boolean subGraph(Graph g2) {
+    if (g2.countNodes > this.countNodes || g2.countEdges > this.countEdges)
+      return false;
+    for (int i = 0; i < g2.adjMatrix.length; ++i) {
+      for (int j = 0; j < g2.adjMatrix[i].length; ++j) {
+        if (g2.adjMatrix[i][j] != 0 && this.adjMatrix[i][j] == 0)
+          return false;
+      }
+    }
+    return true;
+  }
 
   public String toString() {
     String str = "";
-    
+
     for (int i = 0; i < this.adjMatrix.length; i++) {
       for (int j = 0; j < this.adjMatrix[i].length; j++) {
         str += this.adjMatrix[i][j] + "\t";
