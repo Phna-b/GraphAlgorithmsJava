@@ -1,3 +1,5 @@
+import java.util.*;
+
 class Graph {
   private int countNodes;
   private int countEdges;
@@ -29,6 +31,18 @@ class Graph {
     }
     this.adjMatrix[source][sink] = weigth;
     this.countEdges++;
+  }
+
+  public void addEdgeUnoriented(int u, int v, int w) {
+    if (u < 0 || u > this.countNodes - 1
+        || v < 0 || v > this.countNodes - 1
+        || w <= 0) {
+      System.err.println("Invalid edge: " + u + " " + v + " " + w);
+      return;
+    }
+    this.adjMatrix[u][v] = w;
+    this.adjMatrix[v][u] = w;
+    this.countEdges += 2;
   }
 
   public int degree(int node) {
@@ -94,6 +108,30 @@ class Graph {
       }
     }
     return true;
+  }
+
+  public ArrayList<Integer> bfs(int s) {
+    int[] desc = new int[this.countNodes];
+    ArrayList<Integer> Q = new ArrayList();
+    Q.add(s);
+    ArrayList<Integer> R = new ArrayList();
+    R.add(s);
+    desc[s] = 1;
+
+    // main loop
+    while (Q.size() > 0) {
+      int u = Q.remove(0);
+      for (int v = 0; v < this.adjMatrix[u].length; v++) {
+        if (this.adjMatrix[u][v] != 0) { // v é adjacente a u(existe uma aresta)
+          if (desc[v] == 0) {
+            Q.add(v);
+            R.add(v);
+            desc[v] = 1;
+          }
+        }
+      }
+    }
+    return R;
   }
 
   public String toString() {
