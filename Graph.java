@@ -134,6 +134,11 @@ class Graph {
     return R;
   }
 
+  public boolean connected(){
+    // verifica se o grafo é conexo
+    return this.bfs(0).size() == this.countNodes;
+  }
+
   public String toString() {
     String str = "";
 
