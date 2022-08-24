@@ -160,6 +160,31 @@ class Graph {
     return R;
   }
 
+  public ArrayList<Integer> dfs(int s) { // busca em profundidade
+    int[] desc = new int[this.countNodes];
+    ArrayList<Integer> S = new ArrayList();
+    S.add(s);
+    ArrayList<Integer> R = new ArrayList();
+    R.add(s);
+    desc[s] = 1;
+    // main loop
+    while (S.size() > 0) {
+      int u = S.get(S.size()-1);
+      boolean unstack = true; // Desempilhar
+      for(int v = 0; v < adjMatrix[u].length;++v){
+        if(this.adjMatrix[u][v] != 0 && desc[v] == 0){
+            S.add(v);
+            R.add(v);
+            desc[v] = 1;
+            unstack = false;
+            break;
+          }
+      } if(unstack)
+          S.remove(S.size()-1);
+    }
+    return R;
+  }
+
   public boolean connected() {
     // verifica se o grafo é conexo
     return this.bfs(0).size() == this.countNodes;

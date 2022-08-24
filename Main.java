@@ -1,4 +1,5 @@
 import java.io.*;
+
 class Main {
   public static void main(String[] args) throws IOException { // Comando f2 para renomear globalmente
     /*
@@ -27,19 +28,20 @@ class Main {
      * g3.addEdge(3, 1, 1);
      * System.out.println("g3 is subGraph? " + g1.subGraph(g3)); // false
      * g3.bfs(1);
+     * 
+     * Graph g1 = new Graph(9);
+     * g1.addEdgeUnoriented(7, 5, 1);
+     * g1.addEdgeUnoriented(7, 1, 1);
+     * g1.addEdgeUnoriented(7, 2, 1);
+     * g1.addEdgeUnoriented(1, 0, 1);
+     * g1.addEdgeUnoriented(1, 4, 1);
+     * g1.addEdgeUnoriented(2, 3, 1);
+     * g1.addEdgeUnoriented(5, 6, 1);
+     * g1.addEdgeUnoriented(6, 8, 1);
+     * System.out.println(g1.bfs(7));
+     * System.out.println(g1.connected());
      */
-    Graph g1 = new Graph(9);
-    g1.addEdgeUnoriented(7, 5, 1);
-    g1.addEdgeUnoriented(7, 1, 1);
-    g1.addEdgeUnoriented(7, 2, 1);
-    g1.addEdgeUnoriented(1, 0, 1);
-    g1.addEdgeUnoriented(1, 4, 1);
-    g1.addEdgeUnoriented(2, 3, 1);
-    g1.addEdgeUnoriented(5, 6, 1);
-    g1.addEdgeUnoriented(6, 8, 1);
-    System.out.println(g1.bfs(7));
-    System.out.println(g1.connected());
-    
+
     Graph g2 = new Graph(10);// Aumentando o numero de nós sem declarar ele se torna desconexo
     g2.addEdgeUnoriented(7, 5, 1);
     g2.addEdgeUnoriented(7, 1, 1);
@@ -49,11 +51,12 @@ class Main {
     g2.addEdgeUnoriented(2, 3, 1);
     g2.addEdgeUnoriented(5, 6, 1);
     g2.addEdgeUnoriented(6, 8, 1);
-    System.out.println(g2.bfs(7));
+    System.out.println(g2.bfs(7)); // Pesquisa de largua
     System.out.println(g2.connected());
 
-    //Criando grafo via arquivo 
+    // Criando grafo via arquivo
     Graph g3 = new Graph("graph1.txt");
     System.out.println(g3);
+
   }
 }
