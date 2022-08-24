@@ -1,5 +1,6 @@
+import java.io.*;
 class Main {
-  public static void main(String[] args) { // Comando f2 para renomear globalmente
+  public static void main(String[] args) throws IOException { // Comando f2 para renomear globalmente
     /*
      * Graph g1 = new Graph(4);
      * g1.addEdge(0, 1, 1);
@@ -50,5 +51,9 @@ class Main {
     g2.addEdgeUnoriented(6, 8, 1);
     System.out.println(g2.bfs(7));
     System.out.println(g2.connected());
+
+    //Criando grafo via arquivo 
+    Graph g3 = new Graph("graph1.txt");
+    System.out.println(g3);
   }
 }
