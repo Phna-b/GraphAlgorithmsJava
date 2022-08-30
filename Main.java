@@ -41,7 +41,7 @@ class Main {
      * System.out.println(g1.bfs(7));
      * System.out.println(g1.connected());
       
-
+*/
     Graph g2 = new Graph(10);// Aumentando o numero de nós sem declarar ele se torna desconexo
     g2.addEdgeUnoriented(7, 5, 1);
     g2.addEdgeUnoriented(7, 1, 1);
@@ -56,7 +56,7 @@ class Main {
 
     // Criando grafo via arquivo
     Graph g3 = new Graph("graph1.txt");
-    System.out.println(g3); */
+    System.out.println(g3); 
 
   }
 }

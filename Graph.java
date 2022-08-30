@@ -184,7 +184,28 @@ class Graph {
     }
     return R;
   }
+  
+  public ArrayList<Integer> dfs_Rec(int s) {
+    int[] desc = new int[this.countNodes];
+    ArrayList<Integer> R = new ArrayList<>();
+    dfsRecAux(s, desc,R);
+    return R;
+  }  
+  
+  public void dfsRecAux(int u, int[] desc, ArrayList<Integer> R){
+    desc[u] = 1;
+    R.add(u);
+    for (int v = 0; v < this.adjMatrix[u].length; ++v) {
+      if (this.adjMatrix[u][v] != 0 && desc[v] == 0) {
+        dfsRecAux(v, desc, R);
+      }
+    }  
+  }
 
+
+
+
+  
   public boolean connected() {
     // verifica se o grafo é conexo
     return this.bfs(0).size() == this.countNodes;
