@@ -190,6 +190,16 @@ class Graph {
     return this.bfs(0).size() == this.countNodes;
   }
 
+
+  public boolean nonOriented() {
+    for (int i = 0; i < adjMatrix.length; i++) 
+      for (int j = 0; j < adjMatrix[i].length; j++) 
+        if (adjMatrix[i][j] != adjMatrix[j][i]) 
+          return false;
+        
+  return true;
+  }
+
   public String toString() {
     String str = "";
 
