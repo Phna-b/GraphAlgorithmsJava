@@ -53,6 +53,8 @@ class Main {
     g2.addEdgeUnoriented(6, 8, 1);
     System.out.println(g2.bfs(7)); // Pesquisa de largua
     System.out.println(g2.connected());
+    System.out.println(g2.dfs(7));//Pesquisa de profundidade
+    System.out.println(g2.dfs_Rec(7)); //Pesquisa de profundidade recursiva
 
     // Criando grafo via arquivo
     Graph g3 = new Graph("graph1.txt");
