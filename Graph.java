@@ -221,6 +221,11 @@ class Graph {
   return true;
   }
 
+  public void floydWarshal(){
+
+    // Olhar slides
+  }
+
   public String toString() {
     String str = "";
 
