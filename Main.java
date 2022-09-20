@@ -40,25 +40,33 @@ class Main {
      * g1.addEdgeUnoriented(6, 8, 1);
      * System.out.println(g1.bfs(7));
      * System.out.println(g1.connected());
-      
-*/
-    Graph g2 = new Graph(10);// Aumentando o numero de nós sem declarar ele se torna desconexo
-    g2.addEdgeUnoriented(7, 5, 1);
-    g2.addEdgeUnoriented(7, 1, 1);
-    g2.addEdgeUnoriented(7, 2, 1);
-    g2.addEdgeUnoriented(1, 0, 1);
-    g2.addEdgeUnoriented(1, 4, 1);
-    g2.addEdgeUnoriented(2, 3, 1);
-    g2.addEdgeUnoriented(5, 6, 1);
-    g2.addEdgeUnoriented(6, 8, 1);
-    System.out.println(g2.bfs(7)); // Pesquisa de largua
-    System.out.println(g2.connected());
-    System.out.println(g2.dfs(7));//Pesquisa de profundidade
-    System.out.println(g2.dfs_Rec(7)); //Pesquisa de profundidade recursiva
+     * 
+     * 
+     * Graph g2 = new Graph(10);// Aumentando o numero de nós sem declarar ele se
+     * torna desconexo
+     * g2.addEdgeUnoriented(7, 5, 1);
+     * g2.addEdgeUnoriented(7, 1, 1);
+     * g2.addEdgeUnoriented(7, 2, 1);
+     * g2.addEdgeUnoriented(1, 0, 1);
+     * g2.addEdgeUnoriented(1, 4, 1);
+     * g2.addEdgeUnoriented(2, 3, 1);
+     * g2.addEdgeUnoriented(5, 6, 1);
+     * g2.addEdgeUnoriented(6, 8, 1);
+     * System.out.println(g2.bfs(7)); // Pesquisa de largua
+     * System.out.println(g2.connected());
+     * System.out.println(g2.dfs(7));//Pesquisa de profundidade
+     * System.out.println(g2.dfs_Rec(7)); //Pesquisa de profundidade recursiva
+     */
 
     // Criando grafo via arquivo
-    Graph g3 = new Graph("graph1.txt");
-    System.out.println(g3); 
+    Graph g1 = new Graph("graph1.txt");
+    System.out.println(g1);
 
+    Graph g2 = new Graph("graph2.txt");
+    System.out.println(g2);
+    g2.floydWarshal();
+    Graph g3 = new Graph("graph3.txt");
+    System.out.println(g3);
+    g3.floydWarshal();    
   }
 }

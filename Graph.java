@@ -7,7 +7,7 @@ class Graph {
   private int countNodes;
   private int countEdges;
   private int[][] adjMatrix;
-
+  private static final int INF = 99999;//Contornar problema de overflow do tipo infinity (Metodo floydWarshal)
   public Graph(int countNodes) {
     this.countNodes = countNodes;
     this.adjMatrix = new int[countNodes][countNodes];
@@ -201,10 +201,6 @@ class Graph {
       }
     }  
   }
-
-
-
-
   
   public boolean connected() {
     // verifica se o grafo é conexo
@@ -222,8 +218,48 @@ class Graph {
   }
 
   public void floydWarshal(){
-
-    // Olhar slides
+      int [][] dist = new int [this.countNodes][this.countNodes];
+      int [][] pred = new int [this.countNodes][this.countNodes];
+    for(int i = 0;i < this.adjMatrix.length; i++){
+      for(int j = 0;j < this.adjMatrix[i].length; j++){
+        if(i == j){
+          dist[i][j] = 0;
+          pred[i][j] = -1;
+        }
+        else if(this.adjMatrix[i][j] != 0){//Há aresta (i,j)
+          dist[i][j] = this.adjMatrix[i][j];
+          pred[i][j] = i;
+        } else{
+          dist[i][j] = INF;//Representando infinito
+          pred[i][j] = -1; //Representando null
+        }
+      }
+    }
+    for(int k = 0; k < this.adjMatrix.length;k++){
+      for(int i = 0; i < this.adjMatrix.length;i++){
+        for(int j = 0; j < this.countNodes;j++){
+          if(dist[i][j] > dist[i][k] + dist[k][j]){
+            dist[i][j] = dist[i][k]+ dist[k][j];
+            pred[i][j] = pred[k][j];
+          }
+        }
+      }
+    }
+    //TODO main loop
+    System.out.println("=== Dist ===");
+    for(int i = 0; i < dist.length;i++){
+      for(int j = 0; j < dist[i].length;j++){
+        System.out.print(dist[i][j] + "\t");
+      }
+      System.out.println();
+    }
+    System.out.println("=== Pred ===");
+    for(int i = 0; i < pred.length;i++){
+      for(int j = 0; j < pred[i].length;j++){
+        System.out.print(pred[i][j] + "\t");
+      }
+      System.out.println();
+    }
   }
 
   public String toString() {
