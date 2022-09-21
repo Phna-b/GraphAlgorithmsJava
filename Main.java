@@ -56,17 +56,30 @@ class Main {
      * System.out.println(g2.connected());
      * System.out.println(g2.dfs(7));//Pesquisa de profundidade
      * System.out.println(g2.dfs_Rec(7)); //Pesquisa de profundidade recursiva
+     * 
+     * 
+     * // Criando grafo via arquivo
+     * GraphMatrix g1 = new GraphMatrix("graph1.txt");
+     * System.out.println(g1);
+     * 
+     * GraphMatrix g2 = new GraphMatrix("graph2.txt");
+     * System.out.println(g2);
+     * g2.floydWarshal();
+     * GraphMatrix g3 = new GraphMatrix("graph3.txt");
+     * System.out.println(g3);
+     * g3.floydWarshal();
      */
 
-    // Criando grafo via arquivo
-    Graph g1 = new Graph("graph1.txt");
+    Graph g1 = new Graph(3);
+    g1.addEdge(0, 1, 10);
+    g1.addEdge(0, 2, 20);
+    g1.addEdge(2, 0, 15);
     System.out.println(g1);
 
-    Graph g2 = new Graph("graph2.txt");
+    Graph g2 = new Graph("graph4.txt");
     System.out.println(g2);
-    g2.floydWarshal();
-    Graph g3 = new Graph("graph3.txt");
-    System.out.println(g3);
-    g3.floydWarshal();    
+    System.out.println(g2.degree(2));
+    System.out.println(g2.highestDegree());
+    System.out.println(g2.lowestDegree());
   }
 }
