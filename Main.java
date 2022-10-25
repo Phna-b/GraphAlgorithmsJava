@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Scanner;
 
 class Main {
   public static void main(String[] args) throws IOException { // Comando f2 para renomear globalmente
@@ -62,14 +63,17 @@ class Main {
      * GraphMatrix g1 = new GraphMatrix("graph1.txt");
      * System.out.println(g1);
      * 
-     * GraphMatrix g2 = new GraphMatrix("graph2.txt");
-     * System.out.println(g2);
-     * g2.floydWarshal();
-     * GraphMatrix g3 = new GraphMatrix("graph3.txt");
-     * System.out.println(g3);
-     * g3.floydWarshal();
-     */
 
+*/     
+      GraphMatrix g2 = new GraphMatrix("graph2.txt");
+      System.out.println(g2);
+      g2.floydWarshal();
+      //System.ouprintln(g3);
+     // g3.floydrshal();
+     
+
+
+    /*
     Graph g1 = new Graph(3);
     g1.addEdge(0, 1, 10);
     g1.addEdge(0, 2, 20);
@@ -80,6 +84,31 @@ class Main {
     System.out.println(g2);
     System.out.println(g2.degree(2));
     System.out.println(g2.highestDegree());
-    System.out.println(g2.lowestDegree());
+    System.out.println(g2.lowestDegree());*/
+    /*
+    Boolean condition = true;
+    Scanner scan = new Scanner(System.in);
+    while (condition){
+      System.out.println("Informe a tarefa:");
+      System.out.println("\t 1 - Caminho Mínimo");
+      System.out.println("\t 2 - Labirinto");
+      System.out.println("\t 3 - Sair");
+      int option = scan.nextInt();
+      if(option == 1){
+          System.out.print("Arquivo:");
+            String arquivo = scan.next();
+          System.out.print("Origem:");
+            int origem = scan.nextInt();
+          System.out.print("Destino:");
+            int destino = scan.nextInt();
+      }
+      if(option == 2){
+            System.out.print("Arquivo:");
+               String arquivo = scan.next();
+      }
+      if(option == 3){
+        condition = false;
+      }
+      } */
   }
 }
