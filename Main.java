@@ -63,62 +63,75 @@ class Main {
      * GraphMatrix g1 = new GraphMatrix("graph1.txt");
      * System.out.println(g1);
      * 
+     * 
+     * 
+     * GraphMatrix g2 = new GraphMatrix("graph2.txt");
+     * System.out.println(g2);
+     * g2.floydWarshal();
+     * g2.nearestNeighbor(1);
+     * System.out.println(g2.density());
+     * //System.ouprintln(g3);
+     * // g3.floydrshal();
+     * 
+     * 
+     * 
+     * 
+     * Graph g1 = new Graph(3);
+     * g1.addEdge(0, 1, 10);
+     * g1.addEdge(0, 2, 20);
+     * g1.addEdge(2, 0, 15);
+     * System.out.println(g1);
+     * System.out.println(g1.density());
+     * 
+     * Graph g3 = new Graph("graph4.txt");
+     * System.out.println(g3);
+     * System.out.println(g3.degree(2));
+     * System.out.println(g3.highestDegree());
+     * System.out.println(g3.lowestDegree());
+     * 
+     * 
+     */
 
-*/     
-      GraphMatrix g2 = new GraphMatrix("graph2.txt");
-      System.out.println(g2);
-      g2.floydWarshal();
-      g2.nearestNeighbor(1);
-      System.out.println(g2.density());
-      //System.ouprintln(g3);
-     // g3.floydrshal();
-     
-
-
-    
-    Graph g1 = new Graph(3);
-    g1.addEdge(0, 1, 10);
-    g1.addEdge(0, 2, 20);
-    g1.addEdge(2, 0, 15);
-    System.out.println(g1);
-    System.out.println(g1.density());
-
-    Graph g3 = new Graph("graph4.txt");
-    System.out.println(g3);
-    System.out.println(g3.degree(2));
-    System.out.println(g3.highestDegree());
-    System.out.println(g3.lowestDegree());
-
-
-
-
-
-
-    
-    /*
-    Boolean condition = true;
+    Boolean condition = false;
     Scanner scan = new Scanner(System.in);
-    while (condition){
+    while (condition) {
       System.out.println("Informe a tarefa:");
       System.out.println("\t 1 - Caminho Mínimo");
       System.out.println("\t 2 - Labirinto");
       System.out.println("\t 3 - Sair");
       int option = scan.nextInt();
-      if(option == 1){
-          System.out.print("Arquivo:");
-            String arquivo = scan.next();
-          System.out.print("Origem:");
-            int origem = scan.nextInt();
-          System.out.print("Destino:");
-            int destino = scan.nextInt();
+      if (option == 1) {
+        System.out.print("Arquivo:");
+        String arquivo = scan.next();
+        System.out.print("Origem:");
+        int origem = scan.nextInt();
+        System.out.print("Destino:");
+        int destino = scan.nextInt();
       }
-      if(option == 2){
-            System.out.print("Arquivo:");
-               String arquivo = scan.next();
+      if (option == 2) {
+        System.out.print("Arquivo:");
+        String arquivo = scan.next();
       }
-      if(option == 3){
+      if (option == 3) {
         condition = false;
       }
-      } */
+    }
+
+    GraphMatrix g2 = new GraphMatrix("graph2.txt");
+    System.out.println(g2);
+    g2.floydWarshal(0, 1);
+
+    Graph g3 = new Graph("graph2.txt");
+    
+
+
+
+
+
+
+
+
+
+    
   }
 }

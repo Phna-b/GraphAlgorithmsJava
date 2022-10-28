@@ -7,33 +7,34 @@ class GraphMatrix {
   private int countNodes;
   private int countEdges;
   private int[][] adjMatrix;
-  private static final int INF = 99999;//Contornar problema de overflow do tipo infinity (Metodo floydWarshal)
+  private static final int INF = 99999;// Contornar problema de overflow do tipo infinity (Metodo floydWarshal)
+
   public GraphMatrix(int countNodes) {
     this.countNodes = countNodes;
     this.adjMatrix = new int[countNodes][countNodes];
   }
 
   public GraphMatrix(String fileName) throws IOException {
-        File file = new File(fileName);
-        FileReader reader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(reader);
+    File file = new File(fileName);
+    FileReader reader = new FileReader(file);
+    BufferedReader bufferedReader = new BufferedReader(reader);
 
-        // Read header
-        String[] line = bufferedReader.readLine().split(" ");
-        this.countNodes = (Integer.parseInt(line[0]));
-        int fileLines = (Integer.parseInt(line[1]));
+    // Read header
+    String[] line = bufferedReader.readLine().split(" ");
+    this.countNodes = (Integer.parseInt(line[0]));
+    int fileLines = (Integer.parseInt(line[1]));
 
-        // Create and fill adjMatrix with read edges
-        this.adjMatrix = new int[this.countNodes][this.countNodes];
-        for (int i = 0; i < fileLines; ++i) {
-            String[] edgeInfo = bufferedReader.readLine().split(" ");
-            int source = Integer.parseInt(edgeInfo[0]);
-            int sink = Integer.parseInt(edgeInfo[1]);
-            int weight = Integer.parseInt(edgeInfo[2]);
-            addEdge(source, sink, weight);
-        }
-        bufferedReader.close();
-        reader.close();
+    // Create and fill adjMatrix with read edges
+    this.adjMatrix = new int[this.countNodes][this.countNodes];
+    for (int i = 0; i < fileLines; ++i) {
+      String[] edgeInfo = bufferedReader.readLine().split(" ");
+      int source = Integer.parseInt(edgeInfo[0]);
+      int sink = Integer.parseInt(edgeInfo[1]);
+      int weight = Integer.parseInt(edgeInfo[2]);
+      addEdge(source, sink, weight);
+    }
+    bufferedReader.close();
+    reader.close();
   }
 
   public int getCountNodes() {
@@ -169,107 +170,106 @@ class GraphMatrix {
     desc[s] = 1;
     // main loop
     while (S.size() > 0) {
-      int u = S.get(S.size()-1);
+      int u = S.get(S.size() - 1);
       boolean unstack = true; // Desempilhar
-      for(int v = 0; v < adjMatrix[u].length;++v){
-        if(this.adjMatrix[u][v] != 0 && desc[v] == 0){
-            S.add(v);
-            R.add(v);
-            desc[v] = 1;
-            unstack = false;
-            break;
-          }
-      } if(unstack)
-          S.remove(S.size()-1);
+      for (int v = 0; v < adjMatrix[u].length; ++v) {
+        if (this.adjMatrix[u][v] != 0 && desc[v] == 0) {
+          S.add(v);
+          R.add(v);
+          desc[v] = 1;
+          unstack = false;
+          break;
+        }
+      }
+      if (unstack)
+        S.remove(S.size() - 1);
     }
     return R;
   }
-  
+
   public ArrayList<Integer> dfs_Rec(int s) {
     int[] desc = new int[this.countNodes];
     ArrayList<Integer> R = new ArrayList<>();
-    dfsRecAux(s, desc,R);
+    dfsRecAux(s, desc, R);
     return R;
-  }  
-  
-  public void dfsRecAux(int u, int[] desc, ArrayList<Integer> R){
+  }
+
+  public void dfsRecAux(int u, int[] desc, ArrayList<Integer> R) {
     desc[u] = 1;
     R.add(u);
     for (int v = 0; v < this.adjMatrix[u].length; ++v) {
       if (this.adjMatrix[u][v] != 0 && desc[v] == 0) {
         dfsRecAux(v, desc, R);
       }
-    }  
+    }
   }
-  
+
   public boolean connected() {
     // verifica se o grafo é conexo
     return this.bfs(0).size() == this.countNodes;
   }
 
-
   public boolean nonOriented() {
-    for (int i = 0; i < adjMatrix.length; i++) 
-      for (int j = 0; j < adjMatrix[i].length; j++) 
-        if (adjMatrix[i][j] != adjMatrix[j][i]) 
+    for (int i = 0; i < adjMatrix.length; i++)
+      for (int j = 0; j < adjMatrix[i].length; j++)
+        if (adjMatrix[i][j] != adjMatrix[j][i])
           return false;
-        
-  return true;
+
+    return true;
   }
 
-  public void floydWarshal(){
-      int [][] dist = new int [this.countNodes][this.countNodes];
-      int [][] pred = new int [this.countNodes][this.countNodes];
-    for(int i = 0;i < this.adjMatrix.length; i++){
-      for(int j = 0;j < this.adjMatrix[i].length; j++){
-        if(i == j){
+  public void floydWarshalPararel() {
+    int[][] dist = new int[this.countNodes][this.countNodes];
+    int[][] pred = new int[this.countNodes][this.countNodes];
+    for (int i = 0; i < this.adjMatrix.length; i++) {
+      for (int j = 0; j < this.adjMatrix[i].length; j++) {
+        if (i == j) {
           dist[i][j] = 0;
           pred[i][j] = -1;
-        }
-        else if(this.adjMatrix[i][j] != 0){//Há aresta (i,j)
+        } else if (this.adjMatrix[i][j] != 0) {// Há aresta (i,j)
           dist[i][j] = this.adjMatrix[i][j];
           pred[i][j] = i;
-        } else{
-          dist[i][j] = INF;//Representando infinito
-          pred[i][j] = -1; //Representando null
+        } else {
+          dist[i][j] = INF;// Representando infinito
+          pred[i][j] = -1; // Representando null
         }
       }
     }
-    for(int k = 0; k < this.adjMatrix.length;k++){
-      for(int i = 0; i < this.adjMatrix.length;i++){
-        for(int j = 0; j < this.countNodes;j++){
-          if(dist[i][j] > dist[i][k] + dist[k][j]){
-            dist[i][j] = dist[i][k]+ dist[k][j];
+    for (int k = 0; k < this.adjMatrix.length; k++) {
+      for (int i = 0; i < this.adjMatrix.length; i++) {
+        for (int j = 0; j < this.countNodes; j++) {
+          if (dist[i][j] > dist[i][k] + dist[k][j]) {
+            dist[i][j] = dist[i][k] + dist[k][j];
             pred[i][j] = pred[k][j];
           }
         }
       }
     }
-    //TODO main loop
+    // TODO main loop
     System.out.println("=== Dist ===");
-    for(int i = 0; i < dist.length;i++){
-      for(int j = 0; j < dist[i].length;j++){
+    for (int i = 0; i < dist.length; i++) {
+      for (int j = 0; j < dist[i].length; j++) {
         System.out.print(dist[i][j] + "\t");
       }
       System.out.println();
     }
     System.out.println("=== Pred ===");
-    for(int i = 0; i < pred.length;i++){
-      for(int j = 0; j < pred[i].length;j++){
+    for (int i = 0; i < pred.length; i++) {
+      for (int j = 0; j < pred[i].length; j++) {
         System.out.print(pred[i][j] + "\t");
       }
       System.out.println();
     }
   }
 
-  public void nearestNeighbor(int node){
+  public void nearestNeighbor(int node) {
     System.out.println("\n=== NearestNeighbor ===");
     int nextNode = 9999999;
-    ArrayList<String> rota = new ArrayList<String> ();
-    System.out.print(node +" -");
-    
-    for(int i = 0; i < this.countNodes; i++){
-      if(nextNode > this.adjMatrix[node][i] && this.adjMatrix[node][i] != 0){
+    ArrayList<String> rota = new ArrayList<String>();
+    System.out.print(node + " -");
+
+    for (int i = 0; i < this.countNodes; i++) {
+      if (nextNode > this.adjMatrix[node][i] && this.adjMatrix[node][i] != 0) {
         nextNode = i;
         System.out.print(nextNode + " -");
       }
@@ -288,6 +288,46 @@ class GraphMatrix {
       str += "\n";
     }
     return str;
+  }
+
+  public void floydWarshal(int s, int t) {
+    int[][] dist = new int[this.countNodes][this.countNodes];
+    int[][] pred = new int[this.countNodes][this.countNodes];
+    for (int i = 0; i < this.adjMatrix.length; ++i) {
+      for (int j = 0; j < this.adjMatrix[i].length; ++j) {
+        if (i == j) {
+          dist[i][j] = 0;
+          pred[i][j] = -1;
+        } else if (this.adjMatrix[i][j] != 0) { // Edge (i, j) exists
+          dist[i][j] = this.adjMatrix[i][j];
+          pred[i][j] = i;
+        } else {
+          dist[i][j] = INF;
+          pred[i][j] = -1;
+        }
+      }
+    }
+    for (int k = 0; k < this.countNodes; ++k) {
+      for (int i = 0; i < this.countNodes; ++i) {
+        for (int j = 0; j < this.countNodes; ++j) {
+          if (dist[i][j] > dist[i][k] + dist[k][j]) {
+            dist[i][j] = dist[i][k] + dist[k][j];
+            pred[i][j] = pred[k][j];
+          }
+        }
+      }
+    }
+    // Recovering paths
+    System.out.printf("Distance from %d to %d is: %d", s, t, dist[s][t]);
+    ArrayList<Integer> C = new ArrayList<Integer>();
+    C.add(t);
+    int aux = t;
+    while (aux != s) {
+      aux = pred[s][aux];
+      C.add(0, aux);
+    }
+    System.out.println("Path: " + C);
+
   }
 
 }
