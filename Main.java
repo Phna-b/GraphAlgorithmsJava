@@ -68,23 +68,33 @@ class Main {
       GraphMatrix g2 = new GraphMatrix("graph2.txt");
       System.out.println(g2);
       g2.floydWarshal();
+      g2.nearestNeighbor(1);
+      System.out.println(g2.density());
       //System.ouprintln(g3);
      // g3.floydrshal();
      
 
 
-    /*
+    
     Graph g1 = new Graph(3);
     g1.addEdge(0, 1, 10);
     g1.addEdge(0, 2, 20);
     g1.addEdge(2, 0, 15);
     System.out.println(g1);
+    System.out.println(g1.density());
 
-    Graph g2 = new Graph("graph4.txt");
-    System.out.println(g2);
-    System.out.println(g2.degree(2));
-    System.out.println(g2.highestDegree());
-    System.out.println(g2.lowestDegree());*/
+    Graph g3 = new Graph("graph4.txt");
+    System.out.println(g3);
+    System.out.println(g3.degree(2));
+    System.out.println(g3.highestDegree());
+    System.out.println(g3.lowestDegree());
+
+
+
+
+
+
+    
     /*
     Boolean condition = true;
     Scanner scan = new Scanner(System.in);

@@ -262,6 +262,22 @@ class GraphMatrix {
     }
   }
 
+  public void nearestNeighbor(int node){
+    System.out.println("\n=== NearestNeighbor ===");
+    int nextNode = 9999999;
+    ArrayList<String> rota = new ArrayList<String> ();
+    System.out.print(node +" -");
+    
+    for(int i = 0; i < this.countNodes; i++){
+      if(nextNode > this.adjMatrix[node][i] && this.adjMatrix[node][i] != 0){
+        nextNode = i;
+        System.out.print(nextNode + " -");
+      }
+      nextNode = 9999999;
+    }
+    System.out.println("");
+  }
+
   public String toString() {
     String str = "";
 
