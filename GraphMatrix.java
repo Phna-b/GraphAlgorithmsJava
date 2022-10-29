@@ -330,7 +330,7 @@ class GraphMatrix {
 
   }
 
-  /*public void dijkstra(int origem){
+  public void dijkstra(int origem){
     int dist[] = new int[countNodes];
     int pred[] = new int[countNodes];
 
@@ -348,7 +348,7 @@ class GraphMatrix {
 
     while (Q.size() != 0) {
       int menor = this.INF;
-      static int toRemove;
+      int toRemove =1;
       
       for(int i = 0; i < Q.size(); i++){
         if(dist[Q.get(i)] < menor){
@@ -357,16 +357,9 @@ class GraphMatrix {
         } 
       }
       Q.remove(toRemove);
-      for(int i = 0; i < adjMatrix[menor].length;i++){ // Para cada vertice adjacente ao menor
-        if(adjMatrix[menor][i] != 0){
-          
-        }
-      }
-
-     ;
-}
-  }
-  */
+      for(int i = 0; i < adjMatrix[menor].length;i++){}         
+  }}
+  
 public void BellmanFord(int s, int d){
     int dist[] = new int[countNodes];
     int pred[] = new int[countNodes];
