@@ -330,4 +330,67 @@ class GraphMatrix {
 
   }
 
+  /*public void dijkstra(int origem){
+    int dist[] = new int[countNodes];
+    int pred[] = new int[countNodes];
+
+    for(int i = 0; i < countNodes; i++){
+      dist[i] = this.INF;
+      pred[i] = 0;
+    }
+    dist[origem] = 0;
+
+    
+    List<Integer> Q = new ArrayList<Integer>();
+    for(int i = 0; i < countNodes; i++){
+      Q.add(i);
+    }
+
+    while (Q.size() != 0) {
+      int menor = this.INF;
+      static int toRemove;
+      
+      for(int i = 0; i < Q.size(); i++){
+        if(dist[Q.get(i)] < menor){
+          menor = Q.get(i);
+          toRemove = i;
+        } 
+      }
+      Q.remove(toRemove);
+      for(int i = 0; i < adjMatrix[menor].length;i++){ // Para cada vertice adjacente ao menor
+        if(adjMatrix[menor][i] != 0){
+          
+        }
+      }
+
+     ;
+}
+  }
+  */
+public void BellmanFord(int s, int d){
+    int dist[] = new int[countNodes];
+    int pred[] = new int[countNodes];
+
+    for(int i = 0; i < countNodes; i++){
+      dist[i] = this.INF;
+      pred[i] = 0;
+    }
+    dist[s] = 0;
+
+  for(int i = 0; i < d-1; i++){
+    for(int j = 0; j < d; j++){
+      if(adjMatrix[i][j] != 0 && (adjMatrix[i][j]) < dist[j] && j != s){
+        dist[j] = adjMatrix[i][j];
+        pred[j] = i;
+      }
+    }
+    
+  }
+
+  for(int j = 0;  j < d; j++){
+    System.out.println(j + ", DIST - " + dist[j]);
+  }
+  
+}
+
 }

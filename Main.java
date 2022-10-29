@@ -122,6 +122,14 @@ class Main {
     g2.floydWarshal(0, 1);
 
     Graph g3 = new Graph("graph2.txt");
+
+    GraphMatrix g4 = new GraphMatrix("cm/toy.txt");
+    System.out.println(g4);
+	  g4.BellmanFord(0,3);
+
+  
+
+    
     
 
 
